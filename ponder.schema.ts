@@ -1,6 +1,25 @@
 import { onchainTable } from "ponder";
 
-export const example = onchainTable("example", (t) => ({
+// Data requirement:
+// Tx Hash
+// From (address)
+// To (address)
+// Amount
+// Timestamp
+// Block number
+
+export const transfer = onchainTable("transfer", (t) => ({
   id: t.text().primaryKey(),
-  name: t.text(),
+  txHash: t.text().notNull(),
+  from: t.text().notNull(),
+  to: t.text().notNull(),
+  amount: t.bigint().notNull(),
+  timestamp: t.bigint().notNull(),
+  blocknumber: t.bigint().notNull(),
+}));
+
+export const holder = onchainTable("holder", (t) => ({
+  id: t.text().primaryKey(),
+  address: t.text().notNull(),
+  balance: t.bigint().notNull(),
 }));
